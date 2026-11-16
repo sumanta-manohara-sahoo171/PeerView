@@ -1,0 +1,51 @@
+# Virtual Environments
+myenv/
+venv/
+env/
+.venv/
+ENV/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Django & Databases
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+backend/db.sqlite3
+backend/db.sqlite3-journal
+
+# User Uploads & Collected Static Files
+media/
+backend/media/
+staticfiles/
+backend/staticfiles/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Archives & Backups
+*.zip
+*.tar.gz
+*.bak
+
+# IDE & Editor Folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS Generated Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

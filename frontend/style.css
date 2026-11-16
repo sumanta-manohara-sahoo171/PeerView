@@ -1,0 +1,168 @@
+/* 1. THE VARIABLES */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --nav-bg: #ffffff;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+}
+
+body.dark-mode {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --nav-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+}
+
+/* 2. BASE RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    padding-bottom: 2rem;
+}
+
+/* 3. LAYOUT COMPONENTS */
+.navbar {
+    width: 100%;
+    background-color: var(--nav-bg);
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.container { max-width: 50rem; margin: 2rem auto; padding: 0 1rem; }
+
+.card, .post-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin: 0 auto 1.5rem auto;
+    border: 1px solid var(--border);
+    width: 100%;
+}
+
+#auth-section { max-width: 400px; }
+
+/* 4. FORM ELEMENTS */
+input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 10px;
+}
+
+input:focus, textarea:focus { border-color: var(--primary); }
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* 5. BUTTONS */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s;
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.primary-btn { background-color: var(--primary); color: white; }
+.primary-btn:hover { background-color: var(--primary-hover); }
+
+.secondary-btn {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+.secondary-btn:hover { background-color: var(--bg-color); }
+
+.w-100 { width: 100% !important; }
+
+/* 6. UTILITIES & SPECIFICS */
+.hidden { display: none !important; }
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.search-bar input {
+    flex: 1; 
+    margin-bottom: 0;
+}
+
+/* --- 7. MOBILE RESPONSIVE RULES --- */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    .nav-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+    .nav-buttons button {
+        flex: 1;
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .flex-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .flex-row > div {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .flex-row button { width: 100%; }
+
+    .search-bar {
+        flex-direction: column; 
+    }
+    .search-bar button {
+        width: 100%;
+    }
+
+    .card, .post-card {
+        padding: 1.25rem; 
+    }
+}

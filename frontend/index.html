@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeerView</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div style="font-weight:800;font-size:1.5rem;color:var(--primary);">
+            PeerView
+        </div>
+
+        <div class="nav-buttons">
+            <button id="theme-toggle-btn" class="secondary-btn">🌙 Dark Mode</button>
+            <button id="nav-feed-btn" class="secondary-btn hidden">Feed</button>
+            <button id="nav-profile-btn" class="secondary-btn hidden">Profile</button>
+            <button id="nav-admin-btn" class="secondary-btn hidden">Admin</button>
+            <button id="logout-btn" class="secondary-btn hidden">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Authentication -->
+    <div id="auth-section" class="container card">
+        <h3 style="text-align:center;margin-top:0;font-size:1.5rem;">
+            Welcome Back
+        </h3>
+
+        <form id="login-form">
+
+            <div id="username-group">
+                <label style="font-weight:bold;font-size:0.9rem;">Username</label>
+                <input type="text" id="username"
+                       placeholder="Enter your username" required>
+            </div>
+
+            <div id="email-group" class="hidden">
+                <label style="font-weight:bold;font-size:0.9rem;">Email Address</label>
+                <input type="email" id="email"
+                       placeholder="Enter your email address">
+            </div>
+
+            <div id="password-group">
+                <label style="font-weight:bold;font-size:0.9rem;">Password</label>
+                <input type="password" id="password"
+                       placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" id="auth-submit-btn"
+                    class="primary-btn w-100">
+                Sign In
+            </button>
+
+            <div style="display:flex;justify-content:center;margin-top:15px;">
+                <a href="#" id="forgot-password-link"
+                   style="font-size:0.85rem;color:var(--primary);text-decoration:none;">
+                    Forgot Password?
+                </a>
+            </div>
+
+            <p id="login-error" class="hidden"
+               style="color:#dc2626;margin-top:10px;font-size:0.9rem;text-align:center;">
+            </p>
+        </form>
+
+        <p style="text-align:center;margin-top:15px;font-size:0.9rem;
+                  border-top:1px solid var(--border);padding-top:15px;">
+            Don't have an account?
+            <a href="#" id="show-register"
+               style="color:var(--primary);font-weight:bold;text-decoration:none;">
+                Sign Up
+            </a>
+        </p>
+    </div>
+
+    <!-- Feed -->
+    <div id="feed-section" class="container hidden">
+
+        <div class="card">
+            <h3 style="margin-top:0;margin-bottom:10px;">Create a Post</h3>
+
+            <form id="create-post-form">
+                <textarea id="new-post-content"
+                          placeholder="Share your project, thoughts, or ask for peer review..."
+                          required rows="3"></textarea>
+
+                <div class="flex-row">
+                    <div>
+                        <input type="file" id="file-upload"
+                               accept=".jpg,.jpeg,.png,.gif,.pdf"
+                               style="display:none;">
+
+                        <label for="file-upload" class="secondary-btn"
+                               style="cursor:pointer;font-size:0.8rem;margin:0;">
+                            📎 Attach File
+                        </label>
+
+                        <span id="file-name-display"
+                              style="font-size:0.8rem;margin-left:10px;color:var(--text-muted);">
+                        </span>
+                    </div>
+
+                    <button type="submit" class="primary-btn">Post</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="search-input"
+                   placeholder="Search posts...">
+
+            <button id="search-btn" class="primary-btn">Search</button>
+            <button id="clear-search-btn" class="secondary-btn">Clear</button>
+        </div>
+
+        <button id="load-posts-btn" class="hidden">Hidden Load Trigger</button>
+
+        <div id="posts-container"></div>
+
+        <div style="text-align:center;margin-top:15px;">
+            <button id="load-more-btn"
+                    class="secondary-btn hidden w-100">
+                Load More Posts
+            </button>
+
+            <p id="no-more-posts-text" class="hidden"
+               style="color:var(--text-muted);font-size:0.9rem;">
+                You've reached the end of the feed.
+            </p>
+        </div>
+    </div>
+
+    <!-- Improved Profile Page -->
+    <div id="profile-section" class="container hidden">
+
+        <div class="card" style="text-align:center;padding:30px 20px;">
+
+            <div id="profile-avatar"
+                 style="width:100px;height:100px;background:var(--primary);
+                        color:white;border-radius:50%;display:flex;
+                        align-items:center;justify-content:center;
+                        font-size:2.5rem;font-weight:bold;margin:0 auto 15px;">
+                U
+            </div>
+
+            <h2 id="profile-username" style="margin:0 0 5px 0;">
+                Username
+            </h2>
+
+            <p style="color:var(--text-muted);margin:0 0 20px;">
+                PeerView Member
+            </p>
+
+            <div style="text-align:left;max-width:450px;margin:0 auto;">
+
+                <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                    <strong>Email Address</strong>
+                    <p id="profile-email"
+                       style="margin:5px 0;color:var(--text-muted);">
+                        Not provided
+                    </p>
+                </div>
+
+                <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                    <strong>First Name</strong>
+                    <p id="first-name"
+                       style="margin:5px 0;color:var(--text-muted);">
+                        Not provided
+                    </p>
+                </div>
+
+                <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                    <strong>Last Name</strong>
+                    <p id="last-name"
+                       style="margin:5px 0;color:var(--text-muted);">
+                        Not provided
+                    </p>
+                </div>
+
+            </div>
+
+            <p id="profile-error" class="hidden"
+               style="color:#dc2626;margin-top:15px;">
+            </p>
+
+            <button id="edit-profile-btn"
+                    class="primary-btn"
+                    style="margin-top:20px;">
+                ✏️ Edit Profile
+            </button>
+
+        </div>
+
+        <h3 style="margin-top:30px;border-bottom:2px solid var(--border);
+                   padding-bottom:10px;">
+            My Posts
+        </h3>
+
+        <button id="load-my-posts-btn" class="hidden">
+            Hidden Load Trigger
+        </button>
+
+        <div id="my-posts-container"></div>
+
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="hidden"
+         style="position:fixed;top:0;left:0;width:100%;height:100%;
+                background:rgba(0,0,0,0.7);justify-content:center;
+                align-items:center;z-index:1000;">
+
+        <div class="card"
+             style="width:90%;max-width:450px;margin:0;padding:25px;">
+
+            <h3 style="margin-top:0;">Edit Profile</h3>
+
+            <form id="edit-profile-form">
+
+                <label style="font-weight:bold;font-size:0.9rem;">
+                    Email Address
+                </label>
+                <input type="email" id="edit-email"
+                       placeholder="Enter your email">
+
+                <label style="font-weight:bold;font-size:0.9rem;">
+                    First Name
+                </label>
+                <input type="text" id="edit-first-name"
+                       placeholder="Enter your first name">
+
+                <label style="font-weight:bold;font-size:0.9rem;">
+                    Last Name
+                </label>
+                <input type="text" id="edit-last-name"
+                       placeholder="Enter your last name">
+
+                <p id="edit-profile-error" class="hidden"
+                   style="color:#dc2626;font-size:0.9rem;">
+                </p>
+
+                <button type="submit" id="save-profile-btn"
+                        class="primary-btn w-100"
+                        style="margin-top:10px;">
+                    Save Changes
+                </button>
+
+            </form>
+
+            <button id="close-modal-btn"
+                    class="secondary-btn w-100"
+                    style="margin-top:10px;">
+                Cancel
+            </button>
+
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-section" class="container hidden">
+
+        <div class="card">
+            <h2 style="margin-top:0;">🛡️ Admin Dashboard</h2>
+
+            <p style="font-size:1.1rem;">
+                Total Posts in System:
+                <strong id="stat-total-posts"
+                        style="color:var(--primary);">0</strong>
+            </p>
+
+            <hr style="border:0;border-top:1px solid var(--border);margin:20px 0;">
+
+            <h3>🚩 Reported Reviews (Moderation Queue)</h3>
+
+            <div id="reported-comments-container"></div>
+        </div>
+
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal" class="hidden"
+         style="position:fixed;top:0;left:0;width:100%;height:100%;
+                background:rgba(0,0,0,0.7);display:flex;
+                justify-content:center;align-items:center;z-index:1000;">
+
+        <div class="card" style="width:90%;max-width:400px;margin:0;">
+
+            <h3 style="margin-top:0;">Reset Password</h3>
+
+            <div id="fp-step-1">
+                <p style="font-size:0.9rem;color:var(--text-muted);">
+                    Enter your username to begin the reset process.
+                </p>
+
+                <input type="text" id="fp-email"
+                       placeholder="Your Username">
+
+                <button id="fp-send-otp-btn"
+                        class="primary-btn w-100">
+                    Next
+                </button>
+            </div>
+
+            <div id="fp-step-2" class="hidden">
+
+                <p style="font-size:0.9rem;color:var(--text-muted);">
+                    User verified. Please choose a new password.
+                </p>
+
+                <input type="text" id="fp-otp" class="hidden">
+
+                <input type="password" id="fp-new-password"
+                       placeholder="New Password">
+
+                <button id="fp-reset-btn"
+                        class="primary-btn w-100">
+                    Confirm Password Reset
+                </button>
+
+            </div>
+
+            <p id="fp-msg"
+               style="margin-top:10px;font-size:0.85rem;text-align:center;font-weight:bold;">
+            </p>
+
+            <button id="fp-close-btn"
+                    class="secondary-btn w-100"
+                    style="margin-top:10px;">
+                Cancel
+            </button>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
