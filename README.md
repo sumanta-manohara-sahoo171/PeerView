@@ -86,7 +86,7 @@ PeerView/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/sumanta-manohara-sahoo-171/PeerView.git
+git clone https://github.com/sumanta-manohara-sahoo171/PeerView.git
 cd PeerView
 
 ```
